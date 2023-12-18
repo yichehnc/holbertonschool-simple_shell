@@ -7,5 +7,5 @@
 int main(int argc, char const *argv[])
 {
 	printf("Hello shell\n");
-	return 0;
+	return (0);
 }
