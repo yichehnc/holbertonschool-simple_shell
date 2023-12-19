@@ -7,7 +7,7 @@
 
 int simple_shell_launch(char **args)
 {
-	pid_t pid, w_pid;
+	pid_t pid;
 	int status;
 
 	pid = fork();
@@ -28,7 +28,7 @@ int simple_shell_launch(char **args)
 	{
 		do
 		{
-			w_pid = waitpid(pid, &status, WUNTRACED);
+			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 

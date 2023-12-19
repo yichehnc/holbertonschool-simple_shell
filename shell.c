@@ -14,7 +14,6 @@ void shell_loop()
         */
         char *line;
         char **commands;
-        int bytes_read;
         int status;
         do
         {
@@ -28,7 +27,7 @@ void shell_loop()
                 free(commands);
         } while (status);
 }
-int main(int argc, char **argv)
+int main(void)
 {
         shell_loop();
         return (EXIT_SUCCESS);

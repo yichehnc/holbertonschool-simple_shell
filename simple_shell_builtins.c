@@ -19,7 +19,7 @@ int simple_shell_cd(char **args)
 	return (1);
 }
 
-int simple_shell_help(char **args)
+int simple_shell_help(__attribute__((unused)) char **args)
 {
 	int i;
 	printf("Simple Shell\n");
@@ -35,7 +35,7 @@ int simple_shell_help(char **args)
 	return (1);
 }
 
-int simple_shell_exit(char **args)
+int simple_shell_exit(__attribute__((unused)) char **args)
 {
 	return (0);
 }
