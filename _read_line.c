@@ -4,37 +4,23 @@
 #define BUFSIZE 1024
 char *_read_line(void)
 {
-    int bufsize = BUFSIZE;
-    int position = 0;
-    int c;
-    char *buffer = malloc(sizeof(char) * bufsize);
-    if (!buffer)
+    char *line = NULL;
+    size_t bufsize = 0;
+
+    if (getline(&line, &bufsize, stdin) == -1)
     {
-        fprintf(stderr, "Memory allocation error\n");
-        exit(EXIT_FAILURE);
-    }
-    while (1)
-    {
-        c = getchar();
-        if (c == EOF || c == '\n')
+        if (feof(stdin))
         {
-            buffer[position] = '\0';
-            return buffer;
+            free(line);
+            exit(EXIT_SUCCESS);
         }
         else
         {
-            buffer[position] = c;
-        }
-        position++;
-        if (position >= bufsize)
-        {
-            bufsize += BUFSIZE;
-            buffer = realloc(buffer, bufsize);
-            if (!buffer)
-            {
-                fprintf(stderr, "Memory allocation error\n");
-                exit(EXIT_FAILURE);
-            }
+            free(line);
+            perror("error while reading line from stdin");
+            exit(EXIT_FAILURE);
         }
     }
+
+    return line;
 }

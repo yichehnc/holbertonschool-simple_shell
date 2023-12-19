@@ -16,13 +16,13 @@ int simple_shell_launch(char **args)
 	{
 		if (execvp(args[0], args) == -1)
 		{
-			perror("simple_shell _execute_command:");
+			perror("error _execute_command: child process");
 		}
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
 	{
-		perror("simple_shell _execute_command");
+		perror("error in _execute_command: forking");
 	}
 	else
 	{

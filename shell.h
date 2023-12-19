@@ -7,11 +7,12 @@
 #include <string.h>
 
 char *_read_line(void);
+char *_read_stream();
 char **_split_string(char *line);
 int simple_shell_launch(char **args);
 int _execute_command(char **args);
 
-extern char *builtin_arr[];
+extern char *builtin_func_list[];
 
 /* Fundtin declarations for builtin simple shell commands*/
 int simple_shell_cd(char **args);
