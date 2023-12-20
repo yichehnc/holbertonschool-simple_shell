@@ -32,5 +32,9 @@ int simple_shell_launch(char **args)
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 
-	return 1;
+	if (status == 512)
+	{
+		return (2);
+	}
+	return (1);
 }
