@@ -38,5 +38,10 @@ int shell_help(__attribute__((unused)) char **args)
 
 int shell_exit(__attribute__((unused)) char **args)
 {
+	if (args[1])
+	{
+		return (atoi(args[1]));
+	}
+
 	return (0);
 }
