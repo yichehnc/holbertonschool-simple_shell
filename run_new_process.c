@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-int simple_shell_launch(char **args)
+int run_new_process(char **args)
 {
 	pid_t pid;
 	int status;
@@ -32,9 +32,5 @@ int simple_shell_launch(char **args)
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 
-	if (status == 512)
-	{
-		return (2);
-	}
-	return (1);
+	return (-1);
 }

@@ -8,20 +8,15 @@
 
 char *_read_line(void);
 char *_read_stream();
-char **_split_string(char *line);
-int simple_shell_launch(char **args);
-int _execute_command(char **args);
+char **_split_line(char *line);
+int run_new_process(char **args);
+int _execute_args(char **args);
 
 extern char *builtin_func_list[];
 
-/* Fundtin declarations for builtin simple shell commands*/
-int simple_shell_cd(char **args);
-int simple_shell_help(char **args);
-int simple_shell_exit(char **args);
-
-int simple_shell_num_builtins();
-int simple_shell_cd(char **args);
-int simple_shell_help(char **args);
-int simple_shell_exit(char **args);
+/* Functin declarations for builtin simple shell commands*/
+int shell_cd(char **args);
+int shell_help(char **args);
+int shell_exit(char **args);
 
 #endif
