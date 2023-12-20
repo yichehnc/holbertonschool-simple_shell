@@ -1,10 +1,12 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
-#include <sys/types.h>
+/*---LIBRARIES---*/
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/wait.h>
 
 char *_read_line(void);
 char *_read_stream();
