@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "shell.h"
 
-char *builtin_arr[] = {"cd", "help", "exit"};
+char *builtin_func_list[] = {"cd", "help", "exit"};
 
 int simple_shell_cd(char **args)
 {
@@ -21,14 +21,15 @@ int simple_shell_cd(char **args)
 
 int simple_shell_help(__attribute__((unused)) char **args)
 {
-	int i;
+	long unsigned int i;
+
 	printf("Simple Shell\n");
 	printf("Type program names and arguments, and hit enter\n");
 	printf("The following are built in:\n");
 
-	for (i = 0; i < simple_shell_num_builtins(); i++)
+	for (i = 0; i < sizeof(builtin_func_list) / sizeof(char *); i++)
 	{
-		printf("  %s\n", builtin_arr[i]);
+		printf("  %s\n", builtin_func_list[i]);
 	}
 
 	printf("Use the man command for information on other programs.\n");
@@ -38,9 +39,4 @@ int simple_shell_help(__attribute__((unused)) char **args)
 int simple_shell_exit(__attribute__((unused)) char **args)
 {
 	return (0);
-}
-
-int simple_shell_num_builtins()
-{
-	return sizeof(builtin_arr) / sizeof(char *);
 }

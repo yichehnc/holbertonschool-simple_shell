@@ -18,12 +18,15 @@ char **_split_string(char *line)
         char *token;
         if (!tokens)
         {
-                fprintf(stderr, "split_text: Memory allocation failure\n");
+                fprintf(stderr, "_split_string: Memory allocation failure - tokens\n");
                 exit(EXIT_FAILURE);
         }
         token = strtok(line, WORDS_DELIM);
         while (token != NULL)
         {
+                if (token[0] == '#') /*to handle comments*/
+                        break;
+
                 tokens[position] = token;
                 position++;
                 if (position >= bufsize)
@@ -32,7 +35,7 @@ char **_split_string(char *line)
                         tokens = realloc(tokens, bufsize * sizeof(char *));
                         if (tokens != NULL)
                         {
-                                fprintf(stderr, "split_text Memory reallocation error\n");
+                                fprintf(stderr, "_split_string: Memory allocation failure - tokens\n");
                                 exit(EXIT_FAILURE);
                         }
                 }

@@ -6,25 +6,28 @@
 #include <stddef.h>
 #include "shell.h"
 
-int (*builtin_func[])(char **) = {
-    &simple_shell_cd,
-    &simple_shell_help,
-    &simple_shell_exit};
-
 int _execute_command(char **args)
 {
-	int i;
+
+	char *builtin_funcs_list[] = {"cd", "help", "exit"};
+
+	int (*builtin_funcs[])(char **) = {
+	    &simple_shell_cd,
+	    &simple_shell_help,
+	    &simple_shell_exit};
+
+	unsigned int i;
 
 	if (args[0] == NULL)
 	{
 		return (1);
 	}
 
-	for (i = 0; i < simple_shell_num_builtins(); i++)
+	for (i = 0; i < sizeof(builtin_funcs_list) / sizeof(char *); i++)
 	{
-		if (strcmp(args[0], builtin_arr[i]) == 0)
+		if (strcmp(args[0], builtin_funcs_list[i]) == 0)
 		{
-			return (*builtin_func[i])(args);
+			return ((*builtin_funcs[i])(args));
 		}
 	}
 

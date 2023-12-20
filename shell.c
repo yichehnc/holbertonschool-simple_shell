@@ -5,7 +5,8 @@
 #include <string.h>
 #include <unistd.h>
 #include "shell.h"
-void shell_loop()
+
+void shell_loop(void)
 {
         /*
         Read: Read command from standard input
@@ -15,10 +16,20 @@ void shell_loop()
         char *line;
         char **commands;
         int status;
+
         do
         {
-                printf("$ ");
-                line = _read_line();
+
+                if (isatty(STDIN_FILENO))
+                {
+                        printf("$ ");
+                        line = _read_line();
+                }
+                else
+                {
+                        line = _read_stream();
+                }
+
                 if (!(*line))
                         break;
                 commands = _split_string(line);
@@ -27,6 +38,7 @@ void shell_loop()
                 free(commands);
         } while (status);
 }
+
 int main(void)
 {
         shell_loop();
