@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "shell.h"
 
 char *builtin_func_list[] = {"cd", "help", "exit"};
