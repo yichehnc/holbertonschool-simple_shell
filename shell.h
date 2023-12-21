@@ -7,12 +7,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <stddef.h>
 
 char *_read_line(void);
 char *_read_stream();
 char **_split_line(char *line);
 int run_new_process(char **args);
 int _execute_args(char **args);
+char *findFileInPath(const char *filename);
 
 extern char *builtin_func_list[];
 
