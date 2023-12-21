@@ -1,0 +1,14 @@
+TH man 1 "21 December 2023" "0.20" "SHELL man page"
+.SH NAME
+.B shell
+- Simple Shell at Holberton School
+.SH SYNOPSIS
+.B ./shell
+[command] [options] [FILE]
+.SH COPYRIGHT
+.B shell
+is Copyright (C) Echezona Oji and Yichen Cao
+.SH DESCRIPTION
+.B shell
+(Simple Shell) is a major project at Holberton School first sprint in which we build a working simple shell program.
+
