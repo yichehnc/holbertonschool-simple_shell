@@ -38,6 +38,7 @@ int run_new_process(char **args)
 			{
 				waitpid(pid, &status, WUNTRACED);
 			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+			free(filepath);
 		}
 	}
 	else
