@@ -63,3 +63,10 @@ Clone the GitHub repo `https://github.com/yichehnc/holbertonschool-simple_shell`
 
 Navigate to the folder where you cloned the shell.
 
+### Compilation
+
+```
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
+```
+
+Then type into the command line  `./shell` to launch the shell
