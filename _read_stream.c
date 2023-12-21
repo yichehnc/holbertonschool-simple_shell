@@ -21,7 +21,7 @@ char *_read_stream()
 
 	while ((ch = getchar()) != EOF)
 	{
-		if (ch == ' ')
+		if (ch == ' ' && line[i - 1] == ' ')
 			continue;
 
 		line[i] = ch;
