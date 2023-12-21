@@ -105,4 +105,5 @@ man ./man_1_simple_shell
 ## Authors
 **Echezona Oji and Yichen Cao**
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<a class="top-link hide" href="#top">↑</a>
+<a name="top"></a>
