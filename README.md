@@ -76,6 +76,7 @@ Navigate to the folder where you cloned the shell.
 
 ### Compilation
 
+Enter this command to compile:
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
 ```
@@ -89,3 +90,4 @@ Call the manual to read how the `simple shell` works:
 ```
 man ./man_1_simple_shell
 ```
+### Flowchart
