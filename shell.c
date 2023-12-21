@@ -7,47 +7,31 @@
 #include <errno.h>
 #include "shell.h"
 
-#define MAX_COMMAND_LENGTH 100
-
 void run_non_interactive(void)
 {
-        ssize_t bytes_read;
-        int i, status = -1, command_count = 0;
-        char *commands[MAX_COMMAND_LENGTH], *token, **args, line[MAX_COMMAND_LENGTH];
+        /*
+        Read: Read command from standard input
+        Parse: Separate command into a program and arguments
+        Execute: Run the parsed command
+        */
+        char *line;
+        char **args;
+        int status = -1;
 
-        /* Read the input from standard input */
-        if ((bytes_read = read(STDIN_FILENO, line, MAX_COMMAND_LENGTH)) == -1)
+        do
         {
-                perror("Error reading line");
-                exit(EXIT_FAILURE);
-        }
-
-        line[bytes_read - 1] = '\0';
-
-        /* Tokenize the line into commands */
-        token = strtok(line, "\n");
-
-        while (token != NULL)
-        {
-                commands[command_count++] = token;
-                token = strtok(NULL, "\n");
-        }
-
-        /* Handle each command contained in the line input*/
-        for (i = 0; i < command_count; ++i)
-        {
-                /* Tokenize the command into arguments*/
-                args = _split_line(commands[i]);
+                line = _read_stream();
+                args = _split_line(line);
                 status = _execute_args(args);
-                /*free(line);*/
+
+                free(line);
                 free(args);
 
                 if (status >= 0)
                 {
-                        free(args);
                         exit(status);
                 }
-        }
+        } while (status == -1);
 }
 
 void run_interactive(void)
