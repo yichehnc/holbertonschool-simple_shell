@@ -1,14 +1,31 @@
-TH man 1 "21 December 2023" "0.20" "SHELL man page"
-.SH NAME
-.B shell
-- Simple Shell at Holberton School
-.SH SYNOPSIS
-.B ./shell
-[command] [options] [FILE]
-.SH COPYRIGHT
-.B shell
-is Copyright (C) Echezona Oji and Yichen Cao
-.SH DESCRIPTION
-.B shell
-(Simple Shell) is a major project at Holberton School first sprint in which we build a working simple shell program.
+.\" Manpage for shell.
+
+.TH "man_1_simple_shell" "21 December 2023" "0.20" "SHELL man page"
+
+NAME
+	shell - a simple command-line interface that allows users to interact with an operating system, which allows users to type in commands and receive outputs.
+
+SYNOPSIS
+	shell
+
+DESCRIPTION
+
+	Simple Shell is a major project at Holberton School first sprint in which we build a working simple shell program.
+
+	In interactive mode, simple_shell displays a prompt and waits for the user to type a command. The prompt is displayed again after each command execution.
+
+	In non-interactive mode, simple_shell reads commands from standard input or a file and executes them.
+
+
+COMPILATION
+	shell can be compiled using the following command:
+
+	$ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
+AUTHORS
+	Echezona Oji 
+	Yichen Cao 
+COPYRIGHT
+
+	Copyright (C) Echezona Oji and Yichen Cao
+
 
