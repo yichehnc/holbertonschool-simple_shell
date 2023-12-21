@@ -104,3 +104,5 @@ man ./man_1_simple_shell
 
 ## Authors
 **Echezona Oji and Yichen Cao**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
