@@ -105,5 +105,4 @@ man ./man_1_simple_shell
 ## Authors
 **Echezona Oji and Yichen Cao**
 
-<a class="top-link hide" href="#top">↑</a>
-<a name="top"></a>
+ <a href="#top">Back to top</a>
