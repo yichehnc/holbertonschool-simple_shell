@@ -19,25 +19,12 @@ char *_read_stream()
 		exit(EXIT_FAILURE);
 	}
 
-	while (1)
+	while ((ch = getchar()) != EOF)
 	{
-		ch = getchar();
-		if (ch == EOF)
-		{
-			free(line);
-			exit(EXIT_SUCCESS);
-		}
+		if (ch == ' ')
+			continue;
 
-		if (ch == '\n')
-		{
-			line[i] = '\0';
-			return line;
-		}
-		else
-		{
-			line[i] = ch;
-		}
-
+		line[i] = ch;
 		i++;
 
 		if (i >= bufsize)
@@ -52,4 +39,7 @@ char *_read_stream()
 			}
 		}
 	}
+
+	line[i] = '\0';
+	return line;
 }
