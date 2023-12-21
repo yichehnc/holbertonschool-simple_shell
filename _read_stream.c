@@ -19,27 +19,33 @@ char *_read_stream()
 		exit(EXIT_FAILURE);
 	}
 
-	while ((ch = getchar()) != EOF)
+	while (1)
 	{
-		if (ch == ' ' && line[i - 1] == ' ')
-			continue;
-
-		line[i] = ch;
+		ch = getchar(); /* read first char from stream */
+		if (ch == EOF)
+		{
+			free(line);
+			exit(EXIT_SUCCESS);
+		}
+		else if (ch == '\n')
+		{
+			line[i] = '\0';
+			return (line);
+		}
+		else
+		{
+			line[i] = ch;
+		}
 		i++;
-
 		if (i >= bufsize)
 		{
-			bufsize += BUFSIZE;
+			bufsize += bufsize;
 			line = realloc(line, bufsize);
-
 			if (line == NULL)
 			{
-				perror("Memory reallocation failure in _read_steam");
+				fprintf(stderr, "reallocation error in read_stream");
 				exit(EXIT_FAILURE);
 			}
 		}
 	}
-
-	line[i] = '\0';
-	return line;
 }
