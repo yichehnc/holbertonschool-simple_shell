@@ -70,3 +70,11 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
 ```
 
 Then type into the command line  `./shell` to launch the shell
+
+### Manual page
+
+Call the manual to read how the `simple shell` works:
+
+```
+man ./man_1_simple_shell
+```
