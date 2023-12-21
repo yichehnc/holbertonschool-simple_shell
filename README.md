@@ -80,8 +80,12 @@ Enter this command to compile:
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
 ```
+### Usage
 
-Then type into the command line  `./shell` to launch the shell
+Type into the command line  `./shell` to execute the ***shell*** file
+```
+./shell
+```
 
 ### Manual page
 
@@ -91,3 +95,6 @@ Call the manual to read how the `simple shell` works:
 man ./man_1_simple_shell
 ```
 ### Flowchart
+
+## Authors
+**Echezona Oji and Yichen Cao**
