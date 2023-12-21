@@ -42,6 +42,17 @@ The holbertonschool-simple_shell project creates a custom implementation of the 
 	</ul>
 </details>
 
+## Requirements
+
+<ul>
+<li>Ubuntu 20.04 LTS</li>
+	<ul>
+		<li><a href="https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-		overview">Windows 10 or 11</a>
+		<li><a href="https://ubuntu.com/download/desktop">Mac</a>
+	</ul>
+<li>Follows the <a href="https://github.com/alx-tools/Betty/wiki">Betty</a> linter <a href="https://github.com/hs-hq/Betty/blob/main/betty-style.pl">style</a> and <a href="https://github.com/hs-hq/Betty/blob/main/betty-doc.pl">documentation</a></li>
+<li>No more than 5 functions per file</li>
+</ul>
 
 ## Features
 
