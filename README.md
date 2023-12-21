@@ -54,13 +54,19 @@ The holbertonschool-simple_shell project creates a custom implementation of the 
 <li>No more than 5 functions per file</li>
 </ul>
 
+## Repository Contents
+
+| **File** | **Description**|
+|----------|----------------|
+|`shell.h`| A header file containing the prototype functions |
+|`shell.c`| A `C` program that contains the main function |
+
+
 ## Features
 
 - Basic error handling
-
 - Implements built-in command `exit` that exits the shell
 - Implements built-in commands `env` that prints the environment
-
 - Handles the PATH, 'fork' must not be called if the command doesn’t exist
 - Supports both interactive and non-interactive mode
 
