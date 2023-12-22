@@ -11,8 +11,17 @@ int run_new_process(char **args)
 	char *filepath;
 	char exec_path_abs[1024];
 	ssize_t len;
+	struct stat st;
 
 	filepath = get_filepath(command);
+
+	if (strchr(command, '/') != NULL)
+	{
+		if (stat(command, &st) == 0)
+		{
+			filepath = strdup(command);
+		}
+	}
 
 	if (filepath == NULL)
 	{

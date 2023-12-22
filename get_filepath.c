@@ -42,9 +42,5 @@ char *get_filepath(char *command)
 
 	free(path_cp);
 
-	if (strchr(command, '/') != NULL && stat(command, &st) == 0)
-	{
-		return (strdup(command));
-	}
 	return (NULL);
 }
