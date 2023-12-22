@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <stddef.h>
 
+void run_shell(int interactive);
 char *_read_line(void);
 char *_read_stream();
 char **_split_line(char *line);

@@ -1,66 +1,47 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <stddef.h>
-#include <string.h>
-#include <unistd.h>
-#include <errno.h>
 #include "shell.h"
 
-void run_non_interactive(void)
+void run_interactive()
 {
-        /*
-        Read: Read command from standard input
-        Parse: Separate command into a program and arguments
-        Execute: Run the parsed command
-        */
-        char *line;
-        char **args;
-        int status = -1;
-
-        do
-        {
-                line = _read_stream();
-                args = _split_line(line);
-                status = _execute_args(args);
-
-                free(line);
-                free(args);
-
-                if (status >= 0)
-                {
-                        exit(status);
-                }
-        } while (status == -1);
+        run_shell(1);
 }
 
-void run_interactive(void)
+void run_non_interactive()
 {
-        /*
-        Read: Read command from standard input
-        Parse: Separate command into a program and arguments
-        Execute: Run the parsed command
-        */
+        run_shell(0);
+}
+
+void run_shell(int interactive)
+{
         char *line;
         char **args;
-        int status = -1;
+        int status;
 
         do
         {
+                if (interactive)
+                {
+                        printf("$ ");
+                        line = _read_line();
+                }
+                else
+                {
+                        line = _read_stream();
+                }
 
-                printf("$ ");
-                line = _read_line();
-
-                if (!(*line))
+                if (!line)
+                {
                         break;
+                }
+
                 args = _split_line(line);
                 status = _execute_args(args);
+
                 free(line);
                 free(args);
 
                 if (status >= 0)
                 {
-                        exit(status);
+                        exit(status); // Consider using a loop instead of exit() for non-interactive mode
                 }
         } while (status == -1);
 }
