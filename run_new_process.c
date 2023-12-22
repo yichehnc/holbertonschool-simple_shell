@@ -54,11 +54,11 @@ int run_new_process(char **args)
 			}
 		}
 	}
-	else
-	{
-		fprintf(stderr, "%s: %d: %s: not found\n", "./shell", 1, args[0]);
-		exit(127);
-	}
+	/* else
+	// {
+	// 	fprintf(stderr, "%s: %d: %s: not found\n", "./shell", 1, args[0]);
+	// 	exit(127);
+	// }*/
 
 	return (-1);
 }
