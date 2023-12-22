@@ -9,7 +9,7 @@ char *get_filepath(char *command)
 	int path_length;
 	struct stat st;
 
-	if (path == NULL || strcmp(path, "") == 0)
+	if (path == NULL)
 	{
 		return NULL;
 	}
@@ -42,7 +42,7 @@ char *get_filepath(char *command)
 
 	free(path_cp);
 
-	if (stat(command, &st) == 0)
+	if (strchr(command, '/') != NULL && stat(command, &st) == 0)
 	{
 		return (strdup(command));
 	}
