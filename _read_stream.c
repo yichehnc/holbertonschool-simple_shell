@@ -7,7 +7,6 @@ char *_read_stream()
 {
 	int bufsize, i, ch;
 	char *line;
-
 	bufsize = BUFSIZE;
 	i = 0;
 
@@ -21,33 +20,29 @@ char *_read_stream()
 
 	while (1)
 	{
-		ch = getchar();
+		ch = getchar(); /* read first char from stream */
 		if (ch == EOF)
 		{
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
-
-		if (ch == '\n')
+		else if (ch == '\n')
 		{
 			line[i] = '\0';
-			return line;
+			return (line);
 		}
 		else
 		{
 			line[i] = ch;
 		}
-
 		i++;
-
 		if (i >= bufsize)
 		{
-			bufsize += BUFSIZE;
+			bufsize += bufsize;
 			line = realloc(line, bufsize);
-
 			if (line == NULL)
 			{
-				perror("Memory reallocation failure in _read_steam");
+				fprintf(stderr, "reallocation error in read_stream");
 				exit(EXIT_FAILURE);
 			}
 		}

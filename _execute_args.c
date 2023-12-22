@@ -6,21 +6,20 @@
 #include <stddef.h>
 #include "shell.h"
 
-int _execute_command(char **args)
+int _execute_args(char **args)
 {
-
 	char *builtin_funcs_list[] = {"cd", "help", "exit"};
 
 	int (*builtin_funcs[])(char **) = {
-	    &simple_shell_cd,
-	    &simple_shell_help,
-	    &simple_shell_exit};
+	    &shell_cd,
+	    &shell_help,
+	    &shell_exit};
 
 	unsigned int i;
 
 	if (args[0] == NULL)
 	{
-		return (1);
+		return (-1);
 	}
 
 	for (i = 0; i < sizeof(builtin_funcs_list) / sizeof(char *); i++)
@@ -31,5 +30,5 @@ int _execute_command(char **args)
 		}
 	}
 
-	return simple_shell_launch(args);
+	return (run_new_process(args));
 }

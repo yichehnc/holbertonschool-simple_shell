@@ -1,9 +1,8 @@
-#include <stdio.h>
 #include "shell.h"
 
 char *builtin_func_list[] = {"cd", "help", "exit"};
 
-int simple_shell_cd(char **args)
+int shell_cd(char **args)
 {
 	if (args[1] == NULL)
 	{
@@ -19,7 +18,7 @@ int simple_shell_cd(char **args)
 	return (1);
 }
 
-int simple_shell_help(__attribute__((unused)) char **args)
+int shell_help(__attribute__((unused)) char **args)
 {
 	long unsigned int i;
 
@@ -36,7 +35,12 @@ int simple_shell_help(__attribute__((unused)) char **args)
 	return (1);
 }
 
-int simple_shell_exit(__attribute__((unused)) char **args)
+int shell_exit(__attribute__((unused)) char **args)
 {
+	if (args[1])
+	{
+		return (atoi(args[1]));
+	}
+
 	return (0);
 }

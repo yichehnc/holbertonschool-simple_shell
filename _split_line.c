@@ -11,11 +11,13 @@
  * Return: An array of tokens (words) obtained from the input string.
  *         The array is terminated by a NULL pointer.
  */
-char **_split_string(char *line)
+char **_split_line(char *line)
 {
+
         int bufsize = WORDS_BUFSIZE, position = 0;
         char **tokens = malloc(bufsize * sizeof(char *));
         char *token;
+
         if (!tokens)
         {
                 fprintf(stderr, "_split_string: Memory allocation failure - tokens\n");

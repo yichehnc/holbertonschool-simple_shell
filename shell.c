@@ -1,26 +1,24 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <stddef.h>
-#include <string.h>
-#include <unistd.h>
 #include "shell.h"
 
-void shell_loop(void)
+void run_interactive()
 {
-        /*
-        Read: Read command from standard input
-        Parse: Separate command into a program and arguments
-        Execute: Run the parsed command
-        */
+        run_shell(1);
+}
+
+void run_non_interactive()
+{
+        run_shell(0);
+}
+
+void run_shell(int interactive)
+{
         char *line;
-        char **commands;
+        char **args;
         int status;
 
         do
         {
-
-                if (isatty(STDIN_FILENO))
+                if (interactive)
                 {
                         printf("$ ");
                         line = _read_line();
@@ -30,17 +28,28 @@ void shell_loop(void)
                         line = _read_stream();
                 }
 
-                if (!(*line))
-                        break;
-                commands = _split_string(line);
-                status = _execute_command(commands);
+                args = _split_line(line);
+                status = _execute_args(args);
+
                 free(line);
-                free(commands);
-        } while (status);
+                free(args);
+
+                if (status >= 0)
+                {
+                        exit(status);
+                }
+        } while (status == -1);
 }
 
 int main(void)
 {
-        shell_loop();
+        if (isatty(STDIN_FILENO) == 1)
+        {
+                run_interactive();
+        }
+        else
+        {
+                run_non_interactive();
+        }
         return (EXIT_SUCCESS);
 }
