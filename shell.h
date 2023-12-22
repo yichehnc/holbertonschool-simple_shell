@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stddef.h>
+#include <errno.h>
 
 void run_shell(int interactive);
 char *_read_line(void);

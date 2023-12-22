@@ -1,5 +1,7 @@
 #include "shell.h"
 
+extern char **environ;
+
 int run_new_process(char **args)
 {
 	pid_t child_pid;
@@ -14,7 +16,7 @@ int run_new_process(char **args)
 
 	if (filepath == NULL)
 	{
-		len = readlink("/proc/self/exe", exec_path_abs, sizeof(exec_path_abs) + 1);
+		len = readlink("/proc/self/exe", exec_path_abs, sizeof(exec_path_abs) - 1);
 
 		if (len != -1)
 		{
@@ -27,6 +29,7 @@ int run_new_process(char **args)
 			return EXIT_FAILURE;
 		}
 		fprintf(stderr, "./%s: 1: %s: not found\n", executable_filename, command);
+		exit(127);
 	}
 	else
 	{
@@ -34,10 +37,26 @@ int run_new_process(char **args)
 
 		if (child_pid == 0)
 		{
-			if (execvp(filepath, args) == -1)
+			if (execve(filepath, args, environ) == -1)
 			{
-				perror("execvp failed: ");
-				exit(EXIT_FAILURE);
+				switch (errno)
+				{
+				case EACCES:
+					fprintf(stderr, "execve failed: Permission denied\n");
+					exit(126);
+					break;
+				case ENOENT:
+					fprintf(stderr, "execve failed: File not found\n");
+					exit(127);
+					break;
+				case ENOMEM:
+					fprintf(stderr, "execve failed: Not enough memory\n");
+					exit(128);
+					break;
+				default:
+					fprintf(stderr, "execve failed: %s\n", strerror(errno));
+					exit(EXIT_FAILURE);
+				}
 			}
 		}
 		else if (child_pid < 0)
