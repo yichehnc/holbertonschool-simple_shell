@@ -60,7 +60,7 @@ The holbertonschool-simple_shell project creates a custom implementation of the 
 |----------|----------------|
 |`shell.h`| A header file containing the prototype functions |
 |`shell.c`| A `C` program that contains the main function |
-|`_execute_command.c`| 
+|`_execute_command.c`| A function that executes built-in commands |
 |`_read_line.c`| A function that reads a line from standard input |
 |`_read_stream.c`| A function that reads characters from standard input into a buffer |
 |`simple_shell_launch.c`| A function that launches a new process to execute a command |
@@ -95,10 +95,26 @@ Enter this command to compile:
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
 ```
 ### Usage
-
-Type into the command line  `./shell` to execute the ***shell*** file
+### Interactive mode
+Type into the command line  `./shell` to execute the ***shell*** file in the interactive mode.
 ```
 ./shell
+```
+This will open the simple shell with a prompt `$` and allow the user to input commands. Example:
+```
+$ /bin/ls
+AUTHORS             _read_stream.c          shell
+README.md           _simple_shell_launch.c  shell.c
+_execute_command.c  _split_string.c         shell.h
+_read_line.c        man_1_simple_shell      simple_shell_builtins.c
+$ 
+```
+Commands can then be entered after the `$` and run, if it is a known command, it will execute, otherwise, an error message will appear.
+
+To close the simple shell:
+
+```
+$ exit
 ```
 
 ### Manual page
@@ -111,7 +127,8 @@ man ./man_1_simple_shell
 ### Flowchart
 
 ## Authors
-[Echezona Oji](https://github.com/zonafrank)
-[Yichen Cao](https://github.com/yichehnc)
+To contact the authors of this page and to review the code or submit pull requests, please visit:
+- [Echezona Oji](https://github.com/zonafrank)
+- [Yichen Cao](https://github.com/yichehnc)
 
  <a href="#top">Back to top</a>
