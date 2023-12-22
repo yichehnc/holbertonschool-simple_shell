@@ -30,8 +30,8 @@ int run_new_process(char **args)
 					filepath = NULL;
 				}
 				perror("error _run_new_process: child process");
+				exit(EXIT_FAILURE);
 			}
-			exit(EXIT_FAILURE);
 		}
 		else if (pid < 0)
 		{
