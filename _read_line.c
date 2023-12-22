@@ -9,16 +9,15 @@ char *_read_line(void)
 
     if (getline(&line, &bufsize, stdin) == -1)
     {
+        free(line);
         if (feof(stdin))
         {
-            free(line);
-            exit(EXIT_SUCCESS);
+            return NULL;
         }
         else
         {
-            free(line);
             perror("error while reading line from stdin");
-            exit(EXIT_FAILURE);
+            return NULL;
         }
     }
 
