@@ -13,9 +13,11 @@
  */
 char **_split_line(char *line)
 {
+
         int bufsize = WORDS_BUFSIZE, position = 0;
         char **tokens = malloc(bufsize * sizeof(char *));
         char *token;
+
         if (!tokens)
         {
                 fprintf(stderr, "_split_string: Memory allocation failure - tokens\n");
