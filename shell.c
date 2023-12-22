@@ -41,7 +41,7 @@ void run_shell(int interactive)
 
                 if (status >= 0)
                 {
-                        exit(status); // Consider using a loop instead of exit() for non-interactive mode
+                        exit(status);
                 }
         } while (status == -1);
 }
