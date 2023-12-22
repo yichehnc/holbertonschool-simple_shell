@@ -24,11 +24,6 @@ int run_new_process(char **args)
 		{
 			if (execvp(filepath, args) == -1)
 			{
-				if (filepath != NULL)
-				{
-					free(filepath);
-					filepath = NULL;
-				}
 				perror("error _run_new_process: child process");
 				exit(EXIT_FAILURE);
 			}
@@ -50,7 +45,12 @@ int run_new_process(char **args)
 			{
 				/* Print the exit status */
 				printf("Child process exited with status %d\n", WEXITSTATUS(status));
+			}
+
+			if (filepath != NULL)
+			{
 				free(filepath);
+				filepath = NULL;
 			}
 		}
 	}
