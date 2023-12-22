@@ -103,6 +103,7 @@ man ./man_1_simple_shell
 ### Flowchart
 
 ## Authors
-**Echezona Oji and Yichen Cao**
+[Echezona Oji](https://github.com/zonafrank)
+[Yichen Cao](https://github.com/yichehnc)
 
  <a href="#top">Back to top</a>
