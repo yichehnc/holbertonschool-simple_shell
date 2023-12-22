@@ -8,6 +8,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <stddef.h>
 
 void run_shell(int interactive);
@@ -16,7 +17,8 @@ char *_read_stream();
 char **_split_line(char *line);
 int run_new_process(char **args);
 int _execute_args(char **args);
-char *findFileInPath(const char *filename);
+char *get_filepath(char *command);
+const char *get_filename(const char *path);
 
 extern char *builtin_func_list[];
 
