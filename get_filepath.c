@@ -11,10 +11,6 @@ char *get_filepath(char *command)
 
 	if (path == NULL || strcmp(path, "") == 0)
 	{
-		if (stat(command, &st) == 0)
-		{
-			return (strdup(command));
-		}
 		return NULL;
 	}
 
@@ -45,5 +41,10 @@ char *get_filepath(char *command)
 	}
 
 	free(path_cp);
+
+	if (stat(command, &st) == 0)
+	{
+		return (strdup(command));
+	}
 	return (NULL);
 }
