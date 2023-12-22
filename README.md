@@ -97,7 +97,8 @@ Type into the command line  `./shell` to execute the ***shell*** file in the int
 ```
 ./shell
 ```
-This will open the simple shell with a prompt `$` and allow the user to input commands. Example:
+This will open the simple shell with a prompt `$` and allow the user to input commands. 
+### Examples-of-commands
 ```
 $ /bin/ls
 AUTHORS             _read_stream.c          shell
