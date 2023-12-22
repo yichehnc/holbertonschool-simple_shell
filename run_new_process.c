@@ -37,7 +37,7 @@ int run_new_process(char **args)
 
 		if (pid == 0)
 		{
-			if (execvp(args[0], args) == -1)
+			if (execvp(filepath, args) == -1)
 			{
 				perror("error _execute_command: child process");
 				exit(EXIT_FAILURE);
@@ -53,6 +53,7 @@ int run_new_process(char **args)
 			{
 				waitpid(pid, &status, WUNTRACED);
 			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+			free(filepath);
 		}
 	}
 	return (-1);
