@@ -1,0 +1,53 @@
+Manpage for shell.
+
+man_1_simple_shell		Simple Shell Manual
+
+NAME
+	shell - a simple command-line interface
+
+SYNOPSIS
+	shell
+
+DESCRIPTION
+
+	Simple Shell is a simple command-line interface that allows users to interact with an operating system, which allows users to type in commands and receive outputs.
+
+	In interactive mode, simple_shell displays a prompt and waits for the user to type a command. The prompt is displayed again after each command execution.
+
+	In non-interactive mode, simple_shell reads commands from standard input or a file and executes them.
+
+OPTIONS
+	Simple_shell does not support command-line options.
+COMMANDS
+	Simple_shell supports the following commands:
+
+	ls
+		Displays the contents of the current directory.
+
+	cd
+		Changes directory.
+
+	help
+		prompts the command input message again.
+
+
+	exit
+		Exits the shell.
+
+	env
+		Print the current environment.
+COMPILATION
+	shell can be compiled using the following command:
+
+	$ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
+AUTHORS
+	Echezona Oji <echyth@yahoo.com>
+	Yichen Cao <yichenc2017@gmail.com>
+
+BUGS
+	Report bugs at https://github.com/yichehnc/holbertonschool-simple_shell
+COPYRIGHT
+
+	Copyright (C) Echezona Oji and Yichen Cao
+
+
