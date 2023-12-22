@@ -17,8 +17,8 @@ int run_new_process(char **args)
 		if (execvp(args[0], args) == -1)
 		{
 			perror("error _execute_command: child process");
+			exit(EXIT_FAILURE);
 		}
-		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
 	{
