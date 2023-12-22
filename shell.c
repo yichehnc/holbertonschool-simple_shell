@@ -42,10 +42,10 @@ void run_shell(int interactive)
                         free(args);
                         exit(EXIT_SUCCESS);
                 }
-                else if (status == EXIT_FAILURE)
+                /*else if (status == EXIT_FAILURE)
                 {
                         fprintf(stderr, "Command execution failed\n");
-                }
+                }*/
                 free(line);
                 free(args);
         } while (1);
