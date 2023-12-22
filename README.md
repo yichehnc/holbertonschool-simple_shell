@@ -110,6 +110,26 @@ _read_line.c        man_1_simple_shell      simple_shell_builtins.c
 $ 
 ```
 Commands can then be entered after the `$` and run, if it is a known command, it will execute, otherwise, an error message will appear.
+```
+$ ls -la
+total 80
+drwxr-xr-x 3 ycao ycao  4096 Dec 21 21:37 .
+drwxr-x--- 7 ycao ycao  4096 Dec 22 10:12 ..
+drwxr-xr-x 8 ycao ycao  4096 Dec 22 17:56 .git
+-rw-r--r-- 1 ycao ycao   236 Dec 18 20:47 AUTHORS
+-rw-r--r-- 1 ycao ycao  4401 Dec 22 17:48 README.md
+-rw-r--r-- 1 ycao ycao   618 Dec 20 09:52 _execute_command.c
+-rw-r--r-- 1 ycao ycao   481 Dec 20 09:52 _read_line.c
+-rw-r--r-- 1 ycao ycao   715 Dec 20 09:52 _read_stream.c
+-rw-r--r-- 1 ycao ycao   586 Dec 20 09:52 _simple_shell_launch.c
+-rw-r--r-- 1 ycao ycao  1532 Dec 20 09:52 _split_string.c
+-rw-r--r-- 1 ycao ycao  1218 Dec 22 17:55 man_1_simple_shell
+-rwxr-xr-x 1 ycao ycao 17360 Dec 20 09:09 shell
+-rw-r--r-- 1 ycao ycao  1013 Dec 20 10:05 shell.c
+-rw-r--r-- 1 ycao ycao   622 Dec 20 09:52 shell.h
+-rw-r--r-- 1 ycao ycao   803 Dec 20 09:52 simple_shell_builtins.c
+$ 
+```
 
 To close the simple shell:
 
@@ -122,8 +142,11 @@ The simple shell does not need to be opened. Commands can be piped into the simp
 
 ```
 echo /bin/ls | ./shell
+AUTHORS    _execute_command.c  _read_stream.c          _split_string.c     shell    shell.h
+README.md  _read_line.c        _simple_shell_launch.c  man_1_simple_shell  shell.c  simple_shell_builtins.c
 ```
 Once the process has been executed, there is no need to `exit` as the simple shell does not open in the non-interactive mode.
+
 ### Manual page
 
 Call the manual to read how the `simple shell` works:
