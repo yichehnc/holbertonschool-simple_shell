@@ -2,7 +2,7 @@
 
 int run_new_process(char **args)
 {
-	pid_t pid;
+	pid_t child_pid;
 	int status;
 	char *command = args[0];
 	const char *executable_filename;
@@ -25,37 +25,33 @@ int run_new_process(char **args)
 
 	if (filepath == NULL)
 	{
-		/*errmsg_length = strlen(__FILE__) + strlen(command) + 17;
-		errmsg = malloc(errmsg_length * sizeof(char));
-		snprintf(errmsg, errmsg_length, "/%s: 1: %s: not found", __FILE__, command);
-		perror(errmsg);*/
 		fprintf(stderr, "./%s: 1: %s: not found\n", executable_filename, command);
 	}
 	else
 	{
-		pid = fork();
+		child_pid = fork();
 
-		if (pid == 0)
+		if (child_pid == 0)
 		{
 			if (execvp(filepath, args) == -1)
 			{
-				perror("error _execute_command: child process");
+				perror("execvp failed: ");
 				exit(EXIT_FAILURE);
 			}
 		}
-		else if (pid < 0)
+		else if (child_pid < 0)
 		{
-			perror("error in _execute_command: forking");
+			perror("fork failed: ");
 		}
 		else
 		{
 			do
 			{
-				waitpid(pid, &status, WUNTRACED);
+				waitpid(child_pid, &status, WUNTRACED);
 			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		}
 
 		free(filepath);
 	}
-	return (-1);
+	return child_pid > 0 ? EXIT_SUCCESS : EXIT_FAILURE;
 }

@@ -15,36 +15,31 @@ char *_read_stream()
 	if (line == NULL)
 	{
 		perror("memory allocation failed in _read_stream\n");
-		exit(EXIT_FAILURE);
+		return NULL;
 	}
 
-	while (1)
+	while ((ch = getchar()) != EOF)
 	{
-		ch = getchar(); /* read first char from stream */
-		if (ch == EOF)
-		{
-			free(line);
-			exit(EXIT_SUCCESS);
-		}
-		else if (ch == '\n')
+		line[i++] = ch;
+
+		if (ch == '\n')
 		{
 			line[i] = '\0';
 			return (line);
 		}
-		else
-		{
-			line[i] = ch;
-		}
-		i++;
+
 		if (i >= bufsize)
 		{
-			bufsize += bufsize;
+			bufsize += bufsize / 2;
 			line = realloc(line, bufsize);
 			if (line == NULL)
 			{
 				fprintf(stderr, "reallocation error in read_stream");
-				exit(EXIT_FAILURE);
+				return NULL;
 			}
 		}
 	}
+
+	free(line);
+	return NULL;
 }

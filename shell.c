@@ -28,17 +28,27 @@ void run_shell(int interactive)
                         line = _read_stream();
                 }
 
+                if (line == NULL)
+                {
+                        break;
+                }
+
                 args = _split_line(line);
                 status = _execute_args(args);
 
+                if (status == EXIT_SUCCESS && strcmp(args[0], "exit") == 0)
+                {
+                        free(line);
+                        free(args);
+                        exit(EXIT_SUCCESS);
+                }
+                else if (status == EXIT_FAILURE)
+                {
+                        fprintf(stderr, "Command execution failed\n");
+                }
                 free(line);
                 free(args);
-
-                if (status >= 0)
-                {
-                        exit(status);
-                }
-        } while (status == -1);
+        } while (1);
 }
 
 int main(void)
