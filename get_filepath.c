@@ -1,5 +1,7 @@
 #include "shell.h"
 
+extern char **environ;
+
 char *get_filepath(char *command)
 {
 	char *path = getenv("PATH");

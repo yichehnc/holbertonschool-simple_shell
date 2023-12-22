@@ -6,11 +6,21 @@ int run_new_process(char **args)
 	int status;
 	char *command = args[0];
 	const char *executable_filename;
-	char *filepath = get_filepath(command);
-
+	char *filepath;
+	struct stat st;
 	char exec_path_abs[1024];
+	ssize_t len;
 
-	ssize_t len = readlink("/proc/self/exe", exec_path_abs, sizeof(exec_path_abs) + 1);
+	if (stat(command, &st) == 0)
+	{
+		filepath = strdup(command);
+	}
+	else
+	{
+		filepath = get_filepath(command);
+	}
+
+	len = readlink("/proc/self/exe", exec_path_abs, sizeof(exec_path_abs) + 1);
 
 	if (len != -1)
 	{
