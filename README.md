@@ -60,9 +60,10 @@ The holbertonschool-simple_shell project creates a custom implementation of the 
 |----------|----------------|
 |`shell.h`| A header file containing the prototype functions |
 |`shell.c`| A `C` program that contains the main function |
-|`_execute_command`| 
+|`_execute_command.c`| 
 |`_read_line.c`| A function that reads a line from standard input |
-|`_read_stream.c`|A function that reads characters from standard input into a buffer |
+|`_read_stream.c`| A function that reads characters from standard input into a buffer |
+|`simple_shell_launch.c`| A function that launches a new process to execute a command |
 |`_split_string.c`| A function that splits a string into tokens based on delimiters |
 
 
@@ -80,7 +81,10 @@ To access the custom shell, open terminal (on mac) or Windows Terminal (pc).
 
 ### Installation
 
-Clone the GitHub repo `https://github.com/yichehnc/holbertonschool-simple_shell`
+Clone the GitHub repo:
+```
+git clone https://github.com/yichehnc/holbertonschool-simple_shell
+```
 
 Navigate to the folder where you cloned the shell.
 
