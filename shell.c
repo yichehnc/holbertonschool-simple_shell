@@ -28,11 +28,6 @@ void run_shell(int interactive)
                         line = _read_stream();
                 }
 
-                if (!line)
-                {
-                        break;
-                }
-
                 args = _split_line(line);
                 status = _execute_args(args);
 
