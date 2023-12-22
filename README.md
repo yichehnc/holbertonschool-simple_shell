@@ -60,6 +60,10 @@ The holbertonschool-simple_shell project creates a custom implementation of the 
 |----------|----------------|
 |`shell.h`| A header file containing the prototype functions |
 |`shell.c`| A `C` program that contains the main function |
+|`_execute_command`| 
+|`_read_line.c`| A function that reads a line from standard input |
+|`_read_stream.c`|A function that reads characters from standard input into a buffer |
+|`_split_string.c`| A function that splits a string into tokens based on delimiters |
 
 
 ## Features
