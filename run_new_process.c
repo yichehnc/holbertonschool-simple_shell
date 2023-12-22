@@ -24,8 +24,12 @@ int run_new_process(char **args)
 		{
 			if (execvp(filepath, args) == -1)
 			{
-				free(filepath);
-				perror("error _execute_command: child process");
+				if (filepath != NULL)
+				{
+					free(filepath);
+					filepath = NULL;
+				}
+				perror("error _run_new_process: child process");
 			}
 			exit(EXIT_FAILURE);
 		}
@@ -40,7 +44,6 @@ int run_new_process(char **args)
 				waitpid(pid, &status, WUNTRACED);
 			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 		}
-		free(filepath);
 	}
 	else
 	{

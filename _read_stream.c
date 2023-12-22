@@ -7,7 +7,6 @@ char *_read_stream()
 {
 	int bufsize, i, ch;
 	char *line;
-
 	bufsize = BUFSIZE;
 	i = 0;
 

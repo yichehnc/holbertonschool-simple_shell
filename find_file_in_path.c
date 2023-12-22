@@ -32,7 +32,11 @@ char *findFileInPath(const char *filename)
 			return fullpath;
 		}
 
-		free(fullpath); /* Free memory if the file doesn't exist in this directory */
+		if (fullpath != NULL)
+		{
+			free(fullpath); /* Free memory if the file doesn't exist in this directory */
+			fullpath = NULL;
+		}
 
 		token = strtok(NULL, ":");
 	}
