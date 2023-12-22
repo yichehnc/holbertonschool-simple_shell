@@ -7,40 +7,37 @@
 The holbertonschool-simple_shell project creates a custom implementation of the shell program in C. A shell is a command-line interface that allows users to interact with an operating system, which allows users to type in commands and receive outputs.
 
 ## Table of Contents
-<details>
-	<summary>Table of Contents</summary>
+<ul>
+<li>
+<a href="#requirements">Requirements</a>
+</li>
+<li>
+<a href="#repository-contents">Repository Contents</a>
+</li>
+<li>
+<a href="#features">Features</a>
+</li>
+<li>
+<a href="#getting-started">Getting Started</a>
 	<ul>
-	<li>
-	<a href="#requirements">Requirements</a>
-	</li>
-	<li>
-	<a href="#repository-contents">Repository Contents</a>
-	</li>
-	<li>
-	<a href="#features">Features</a>
-	</li>
-	<li>
-	<a href="#getting-started">Getting Started</a>
-			<ul>
-			<li><a href="#installation">Installation</a></li>
-			<li><a href="#installation">Compilation</a></li>
-			<li><a href="#manual-page">Manual Page</a></li>
-			</ul>
-	</li>
-	<li>
-	<a href="#usage">Usage</a>
-	<ul>
-	<li><a href="#Examples-of-commands">Examples of commands</a></li>
-	<li><a href="#Flowchart">Flowchart</a></li>
-	<li><a href="#interactive-mode">Interactive Mode</a></li>
-	<li><a href="#non-interactive-mode">Non-interactive Mode</a></li>
+	<li><a href="#installation">Installation</a></li>
+	<li><a href="#installation">Compilation</a></li>
+	<li><a href="#manual-page">Manual Page</a></li>
 	</ul>
-	</li>
-	<li>
-	<a href="#authors">Authors</a>
-	</li>
-	</ul>
-</details>
+</li>
+<li>
+<a href="#usage">Usage</a>
+<ul>
+<li><a href="#Examples-of-commands">Examples of commands</a></li>
+<li><a href="#Flowchart">Flowchart</a></li>
+<li><a href="#interactive-mode">Interactive Mode</a></li>
+<li><a href="#non-interactive-mode">Non-interactive Mode</a></li>
+</ul>
+</li>
+<li>
+<a href="#authors">Authors</a>
+</li>
+</ul>
 
 ## Requirements
 
