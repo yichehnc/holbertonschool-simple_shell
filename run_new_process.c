@@ -31,47 +31,46 @@ int run_new_process(char **args)
 		fprintf(stderr, "./%s: 1: %s: not found\n", executable_filename, command);
 		exit(127);
 	}
-	else
-	{
-		child_pid = fork();
 
-		if (child_pid == 0)
+	child_pid = fork();
+
+	if (child_pid == 0)
+	{
+		if (execve(filepath, args, environ) == -1)
 		{
-			if (execve(filepath, args, environ) == -1)
+			switch (errno)
 			{
-				switch (errno)
-				{
-				case EACCES:
-					fprintf(stderr, "execve failed: Permission denied\n");
-					exit(126);
-					break;
-				case ENOENT:
-					fprintf(stderr, "execve failed: File not found\n");
-					exit(127);
-					break;
-				case ENOMEM:
-					fprintf(stderr, "execve failed: Not enough memory\n");
-					exit(128);
-					break;
-				default:
-					fprintf(stderr, "execve failed: %s\n", strerror(errno));
-					exit(EXIT_FAILURE);
-				}
+			case EACCES:
+				fprintf(stderr, "execve failed: Permission denied\n");
+				exit(126);
+				break;
+			case ENOENT:
+				fprintf(stderr, "execve failed: File not found\n");
+				exit(127);
+				break;
+			case ENOMEM:
+				fprintf(stderr, "execve failed: Not enough memory\n");
+				exit(128);
+				break;
+			default:
+				fprintf(stderr, "execve failed: %s\n", strerror(errno));
+				exit(EXIT_FAILURE);
 			}
 		}
-		else if (child_pid < 0)
-		{
-			perror("fork failed: ");
-		}
-		else
-		{
-			do
-			{
-				waitpid(child_pid, &status, WUNTRACED);
-			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-		}
-
-		free(filepath);
 	}
+	else if (child_pid < 0)
+	{
+		perror("fork failed: ");
+	}
+	else
+	{
+		do
+		{
+			waitpid(child_pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	}
+
+	free(filepath);
+
 	return child_pid > 0 ? EXIT_SUCCESS : EXIT_FAILURE;
 }
