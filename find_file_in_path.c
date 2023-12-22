@@ -20,22 +20,20 @@ char *findFileInPath(const char *filename)
 		if (fullpath == NULL)
 		{
 			perror("Memory allocation failure");
-			exit(EXIT_FAILURE);
 		}
-
-		sprintf(fullpath, "%s/%s", token, filename);
-
-		/* Check if the file exists */
-		if (stat(fullpath, &st) == 0)
+		else
 		{
-			/* If the file exists, return the full path */
-			return fullpath;
-		}
 
-		if (fullpath != NULL)
-		{
-			free(fullpath); /* Free memory if the file doesn't exist in this directory */
-			fullpath = NULL;
+			sprintf(fullpath, "%s/%s", token, filename);
+
+			/* Check if the file exists */
+			if (stat(fullpath, &st) == 0)
+			{
+				/* If the file exists, return the full path */
+				return fullpath;
+			}
+
+			free(fullpath);
 		}
 
 		token = strtok(NULL, ":");

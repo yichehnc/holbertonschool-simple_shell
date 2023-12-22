@@ -39,10 +39,19 @@ int run_new_process(char **args)
 		}
 		else
 		{
-			do
+			if (waitpid(pid, &status, 0) == -1)
 			{
-				waitpid(pid, &status, WUNTRACED);
-			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+				perror("Error waiting for child process");
+				exit(EXIT_FAILURE);
+			}
+
+			/* Check if the child process exited normally */
+			if (WIFEXITED(status) == 0)
+			{
+				/* Print the exit status */
+				printf("Child process exited with status %d\n", WEXITSTATUS(status));
+				free(filepath);
+			}
 		}
 	}
 	else
