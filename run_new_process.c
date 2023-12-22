@@ -1,64 +1,36 @@
-#include "shell.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdlib.h>
+#include <stddef.h>
 
 int run_new_process(char **args)
 {
 	pid_t pid;
 	int status;
-	char *filename = args[0];
-	char *filepath = NULL;
 
-	if (strchr(args[0], '/'))
+	pid = fork();
+
+	if (pid == 0)
 	{
-		filepath = args[0];
+		if (execvp(args[0], args) == -1)
+		{
+			perror("error _execute_command: child process");
+		}
+		exit(EXIT_FAILURE);
+	}
+	else if (pid < 0)
+	{
+		perror("error in _execute_command: forking");
 	}
 	else
 	{
-		filepath = findFileInPath(filename);
+		do
+		{
+			waitpid(pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
-
-	if (filepath != NULL)
-	{
-		pid = fork();
-
-		if (pid == 0)
-		{
-			if (execvp(filepath, args) == -1)
-			{
-				perror("error _run_new_process: child process");
-				exit(EXIT_FAILURE);
-			}
-		}
-		else if (pid < 0)
-		{
-			perror("error in _execute_command: forking");
-		}
-		else
-		{
-			if (waitpid(pid, &status, 0) == -1)
-			{
-				perror("Error waiting for child process");
-				exit(EXIT_FAILURE);
-			}
-
-			/* Check if the child process exited normally */
-			if (WIFEXITED(status) == 0)
-			{
-				/* Print the exit status */
-				printf("Child process exited with status %d\n", WEXITSTATUS(status));
-			}
-
-			if (filepath != NULL)
-			{
-				free(filepath);
-				filepath = NULL;
-			}
-		}
-	}
-	/* else
-	// {
-	// 	fprintf(stderr, "%s: %d: %s: not found\n", "./shell", 1, args[0]);
-	// 	exit(127);
-	// }*/
 
 	return (-1);
 }
