@@ -116,7 +116,14 @@ To close the simple shell:
 ```
 $ exit
 ```
+### Non-interactive mode
 
+The simple shell does not need to be opened. Commands can be piped into the simple shell executable using `echo`. For example, to run `/bin/ls` in the simple shell in the non-interactive mode, use the below:
+
+```
+echo /bin/ls | ./shell
+```
+Once the process has been executed, there is no need to `exit` as the simple shell does not open in the non-interactive mode.
 ### Manual page
 
 Call the manual to read how the `simple shell` works:
