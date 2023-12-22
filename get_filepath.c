@@ -3,18 +3,19 @@
 char *get_filepath(char *command)
 {
 	char *path = getenv("PATH");
-	char *path_cp = strdup(path);
+	char *path_cp;
 	char *path_token, *fullpath;
 	int command_length = strlen(command) + 2;
 	int path_length;
 	struct stat st;
 
-	if (!path_cp)
+	if (!path)
 	{
 		perror("Memory allocation failure");
 		return NULL;
 	}
 
+	path_cp = strdup(path);
 	path_token = strtok(path_cp, ":");
 
 	while (path_token != NULL)
@@ -44,7 +45,7 @@ char *get_filepath(char *command)
 
 	if (stat(command, &st) == 0)
 	{
-		return (command);
+		return (strdup(command));
 	}
 
 	return (NULL);
