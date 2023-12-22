@@ -1,6 +1,6 @@
 Manpage for shell.
 
-"man_1_simple_shell" "21 December 2023" "0.20" "SHELL man page"
+man_1_simple_shell		Simple Shell Manual
 
 NAME
 	shell - a simple command-line interface
