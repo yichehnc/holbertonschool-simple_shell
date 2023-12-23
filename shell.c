@@ -54,10 +54,8 @@ void run_non_interactive(void)
  */
 void run_shell(int interactive)
 {
-	char *line = NULL;
-	char **args = NULL;
-	int status = 0;
-	int exit_loop = 0;
+	char *line = NULL, **args = NULL;
+	int status = 0, exit_loop = 0;
 
 	while (1)
 	{
@@ -67,9 +65,7 @@ void run_shell(int interactive)
 			line = _read_line();
 		}
 		else
-		{
 			line = _read_stream();
-		}
 
 		if (line == NULL)
 		{
@@ -95,9 +91,7 @@ void run_shell(int interactive)
 		free(line);
 
 		if (exit_loop)
-		{
 			exit(status);
-		}
 	}
 }
 
