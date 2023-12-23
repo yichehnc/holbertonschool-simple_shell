@@ -16,6 +16,7 @@ void run_shell(int interactive)
 	char **args = NULL;
 	int status = 0;
 	int exit_loop = 0;
+	int i;
 
 	do
 	{
@@ -38,12 +39,26 @@ void run_shell(int interactive)
 			args = _split_line(line);
 			if (args[0] == NULL)
 			{
+				i = 0;
+				while (args[i] != NULL)
+				{
+					free(args[i]);
+					i++;
+				}
 				free(args);
 				free(line);
-				continue;
 			}
-			status = _execute_args(args);
-			free(args);
+			else
+			{
+				status = _execute_args(args);
+				i = 0;
+				while (args[i] != NULL)
+				{
+					free(args[i]);
+					i++;
+				}
+				free(args);
+			}
 		}
 
 		free(line);
