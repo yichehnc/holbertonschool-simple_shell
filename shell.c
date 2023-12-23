@@ -37,10 +37,10 @@ void run_shell(int interactive)
                 {
                         args = _split_line(line);
                         status = _execute_args(args);
-
-                        free(line);
-                        free(args);
                 }
+
+                free(line);
+                free(args);
 
                 if (exit_loop)
                 {
