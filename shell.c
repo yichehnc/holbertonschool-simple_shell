@@ -33,11 +33,6 @@ void run_shell(int interactive)
                 {
                         exit_loop = 1;
                 }
-                else if (strcmp(line, "exit\n") == 0)
-                {
-                        exit_loop = 1;
-                        status = 2;
-                }
                 else
                 {
                         args = _split_line(line);
