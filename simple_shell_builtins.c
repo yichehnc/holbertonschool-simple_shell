@@ -84,20 +84,6 @@ int shell_exit(__attribute__((unused)) char **args)
 	return (0);
 }
 
-/**
- * shell_env - Print current environment variables.
- * @args: Array of strings representing the command and its arguments (unused).
- *
- * Description:
- * Prints current environment variables to stdout.
- * Iterates through `environ` array, printing each variable on a new line.
- *
- * Parameters:
- * @args: Array of strings representing the command and its arguments (unused).
- *
- * Return:
- * Always returns 0, indicating execution status.
- */
 int shell_env(__attribute__((unused)) char **args)
 {
 	char **env;
