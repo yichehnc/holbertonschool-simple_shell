@@ -12,8 +12,8 @@ void run_non_interactive()
 
 void run_shell(int interactive)
 {
-        char *line;
-        char **args;
+        char *line = NULL;
+        char **args = NULL;
         int status = 0;
         int exit_loop = 0;
 
