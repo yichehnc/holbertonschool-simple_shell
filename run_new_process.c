@@ -8,7 +8,7 @@ int run_new_process(char **args)
 	int status;
 	char *command = args[0];
 	const char *executable_filename;
-	char *filepath;
+	char *filepath = NULL;
 	char exec_path_abs[1024];
 	ssize_t len;
 	struct stat st;
