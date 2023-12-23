@@ -62,7 +62,7 @@ void run_non_interactive(void)
 void run_shell(int interactive)
 {
 	char *line = NULL, **args = NULL;
-	int status = 0, exit_loop = 0, i;
+	int status = 0, exit_loop = 0;
 
 	while (1)
 	{
