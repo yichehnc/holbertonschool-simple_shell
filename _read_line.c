@@ -2,14 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #define BUFSIZE 1024
-
-/**
- * _read_line - Read a line of input from stdin.
- *
- * Return:
- * - On success, returns a dynamically allocated string containing the line.
- * - On failure or EOF, returns NULL.
- */
 char *_read_line(void)
 {
 	char *line = NULL;
@@ -20,14 +12,14 @@ char *_read_line(void)
 		free(line);
 		if (feof(stdin))
 		{
-			return (NULL);
+			return NULL;
 		}
 		else
 		{
 			perror("error while reading line from stdin");
-			return (NULL);
+			return NULL;
 		}
 	}
 
-	return (line);
+	return line;
 }

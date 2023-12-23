@@ -1,54 +1,46 @@
 #include "shell.h"
 
-/**
- * get_filepath - Get the full path of a command based on the PATH
- * environment variable.
- * @command: The command for which to find the full path.
- *
- * Return:
- * - On success, returns a dynamically allocated string containing the
- * full path.
- * - On failure or if the command is not found, returns NULL.
- */
 char *get_filepath(char *command)
 {
-	char *path_env = NULL;
-	char *filepath = NULL;
-	char *path_dir = NULL;
-	char *potential_path = NULL;
+	char *path = getenv("PATH");
+	char *path_cp;
+	char *path_token, *fullpath;
+	int command_length = strlen(command) + 2;
+	int path_length;
+	struct stat st;
 
-	/*Check if command contains a path*/
-	if (strchr(command, '/') != NULL)
+	if (path == NULL)
 	{
-		/*Use command as filepath if it exists*/
-		if (access(command, X_OK) == 0)
-		{
-			filepath = strdup(command);
-		}
-	}
-	else
-	{
-		/*Search for command in PATH directories*/
-		path_env = getenv("PATH");
-		if (path_env)
-		{
-			path_dir = strtok(path_env, ":");
-			while (path_dir)
-			{
-				potential_path = malloc(strlen(path_dir) + strlen(command) + 2);
-				strcpy(potential_path, path_dir);
-				strcat(potential_path, "/");
-				strcat(potential_path, command);
-				if (access(potential_path, X_OK) == 0)
-				{
-					filepath = potential_path;
-					break;
-				}
-				free(potential_path);
-				path_dir = strtok(NULL, ":");
-			}
-		}
+		return NULL;
 	}
 
-	return (filepath);
+	path_cp = strdup(path);
+	path_token = strtok(path_cp, ":");
+
+	while (path_token != NULL)
+	{
+		path_length = strlen(path_token);
+		fullpath = malloc(sizeof(char) * (command_length + path_length));
+
+		if (!fullpath)
+		{
+			perror("Memory allocation failure");
+			free(path_cp);
+			return NULL;
+		}
+		snprintf(fullpath, path_length + command_length, "%s/%s", path_token, command);
+
+		if (stat(fullpath, &st) == 0)
+		{
+			free(path_cp);
+			return (fullpath);
+		}
+
+		free(fullpath);
+		path_token = strtok(NULL, ":");
+	}
+
+	free(path_cp);
+
+	return (NULL);
 }
