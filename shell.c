@@ -46,7 +46,6 @@ void run_shell(int interactive)
 					i++;
 				}
 				free(args);
-				free(line);
 			}
 			else
 			{
