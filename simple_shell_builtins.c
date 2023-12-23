@@ -1,6 +1,7 @@
 #include "shell.h"
 
 char *builtin_func_list[] = {"cd", "help", "exit"};
+extern char **environ;
 
 int shell_cd(char **args)
 {
@@ -40,6 +41,18 @@ int shell_exit(__attribute__((unused)) char **args)
 	if (args[1])
 	{
 		return (atoi(args[1]));
+	}
+
+	return (0);
+}
+
+int shell_env(__attribute__((unused)) char **args)
+{
+	char **env;
+
+	for (env = environ; *env != NULL; env++)
+	{
+		printf("%s\n", *env);
 	}
 
 	return (0);
