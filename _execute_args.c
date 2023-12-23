@@ -6,6 +6,31 @@
 #include <stddef.h>
 #include "shell.h"
 
+/**
+ * _execute_args - Execute a command or a built-in function.
+ * @args: An array of strings representing the command and its arguments.
+ *
+ * Description:
+ * This function takes an array of strings (@args) representing the command
+ *  and its arguments.
+ * It checks if the command is a built-in function
+ * (e.g., "cd", "help", "exit", "env").
+ * If it is, the corresponding built-in function is executed.
+ * Otherwise, the command is assumed to be an external command, and a new
+ * process is created
+ * to execute it using the run_new_process function.
+ *
+ * Parameters:
+ * @args: An array of strings representing the command and its arguments.
+ *
+ * Return:
+ * On success, the return value depends on the executed command or function.
+ * If the command is a built-in function, the return value is the result of
+ * the built-in function.
+ * If the command is an external command, the return value is the exit status
+ * of the new process.
+ * On failure or if @args[0] is NULL, the return value is -1.
+ */
 int _execute_args(char **args)
 {
 	char *builtin_funcs_list[] = {"cd", "help", "exit", "env"};
