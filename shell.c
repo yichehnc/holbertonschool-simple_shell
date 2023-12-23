@@ -29,7 +29,7 @@ void run_shell(int interactive)
                         line = _read_stream();
                 }
 
-                if (line == NULL)
+                if (line == NULL || strcmp(line, "exit\n") == 0)
                 {
                         exit_loop = 1;
                 }

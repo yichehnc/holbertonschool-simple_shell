@@ -81,5 +81,5 @@ int run_new_process(char **args)
 
 	free(filepath);
 
-	return status;
+	return WEXITSTATUS(status);
 }
