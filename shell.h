@@ -12,6 +12,10 @@
 #include <stddef.h>
 #include <errno.h>
 
+/*---Macros---*/
+#define TOK_DELIM " \t\r\n\a\""
+extern char **environ;
+
 void run_shell(int interactive);
 char *_read_line(void);
 char *_read_stream();

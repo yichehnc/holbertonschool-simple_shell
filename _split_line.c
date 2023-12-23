@@ -1,49 +1,45 @@
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#define WORDS_BUFSIZE 64
-#define WORDS_DELIM " \t\n\a"
+#include "shell.h"
 
 /**
- * _split_line - Split a string into tokens based on delimiters.
- * @line: The input string to be split.
+ * split_line - split a string into multiple strings
+ * @line: string to be splited
  *
- * Return: An array of tokens (words) obtained from the input string.
- *         The array is terminated by a NULL pointer.
+ * Return: pointer that points to the new array
  */
 char **_split_line(char *line)
 {
-
-	int bufsize = WORDS_BUFSIZE, position = 0;
+	int bufsize = 64;
+	int i = 0;
 	char **tokens = malloc(bufsize * sizeof(char *));
 	char *token;
 
 	if (!tokens)
 	{
-		fprintf(stderr, "_split_string: Memory allocation failure - tokens\n");
+		fprintf(stderr, "allocation error in split_line: tokens\n");
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(line, WORDS_DELIM);
+	token = strtok(line, TOK_DELIM);
 	while (token != NULL)
 	{
-		if (token[0] == '#') /*to handle comments*/
-			break;
-
-		tokens[position] = token;
-		position++;
-		if (position >= bufsize)
+		/* handle comments */
+		if (token[0] == '#')
 		{
-			bufsize += WORDS_BUFSIZE;
+			break;
+		}
+		tokens[i] = token;
+		i++;
+		if (i >= bufsize)
+		{
+			bufsize += bufsize;
 			tokens = realloc(tokens, bufsize * sizeof(char *));
-			if (tokens != NULL)
+			if (!tokens)
 			{
-				fprintf(stderr, "_split_string: Memory allocation failure - tokens\n");
+				fprintf(stderr, "reallocation error in split_line: tokens");
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = strtok(NULL, WORDS_DELIM);
+		token = strtok(NULL, TOK_DELIM);
 	}
-	tokens[position] = (char *)NULL;
+	tokens[i] = NULL;
 	return (tokens);
 }
