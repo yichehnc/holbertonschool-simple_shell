@@ -1,5 +1,24 @@
 #include "shell.h"
 
+/**
+ * get_filepath - Retrieve the full path of a command using the PATH
+ * environment.
+ * @command: The command for which to find the full path.
+ *
+ * Description:
+ * This function searches for the full path of a command in the PATH
+ * directories.
+ * It allocates memory for the full path and returns it if found,
+ * or NULL if the
+ * command is not in any of the specified directories.
+ *
+ * Parameters:
+ * @command: The command for which to find the full path.
+ *
+ * Return:
+ * A dynamically allocated string representing the full path of the command,
+ * or NULL if not found or memory allocation fails.
+ */
 char *get_filepath(char *command)
 {
 	char *path = getenv("PATH"), *path_cp, *path_token, *fullpath;
