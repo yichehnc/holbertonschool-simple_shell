@@ -27,7 +27,7 @@ char **_split_line(char *line)
 		{
 			break;
 		}
-		tokens[i] = token;
+		tokens[i] = strdup(token);
 		i++;
 		if (i >= bufsize)
 		{
