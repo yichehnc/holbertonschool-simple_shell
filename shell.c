@@ -36,7 +36,7 @@ void run_shell(int interactive)
 		else
 		{
 			args = _split_line(line);
-			if (args == NULL)
+			if (args[0] == NULL)
 			{
 				free(line);
 				continue;

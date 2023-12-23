@@ -19,6 +19,7 @@ char **_split_line(char *line)
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, TOK_DELIM);
+
 	while (token != NULL)
 	{
 		/* handle comments */
