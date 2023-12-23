@@ -44,8 +44,6 @@ void run_shell(int interactive)
 
                 if (exit_loop)
                 {
-                        free(line);
-                        free(args);
                         exit(status);
                 }
         } while (1);
