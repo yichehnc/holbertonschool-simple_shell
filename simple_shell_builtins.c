@@ -83,15 +83,3 @@ int shell_exit(__attribute__((unused)) char **args)
 
 	return (0);
 }
-
-int shell_env(__attribute__((unused)) char **args)
-{
-	char **env;
-
-	for (env = environ; *env != NULL; env++)
-	{
-		printf("%s\n", *env);
-	}
-
-	return (0);
-}
