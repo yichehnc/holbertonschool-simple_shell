@@ -12,6 +12,10 @@
 #include <stddef.h>
 #include <errno.h>
 
+/*---VARIABLE DECLARATIONS---*/
+extern char **environ;
+
+/* ---FUNCTION DECLARATIONS---*/
 void run_shell(int interactive);
 char *_read_line(void);
 char *_read_stream();
