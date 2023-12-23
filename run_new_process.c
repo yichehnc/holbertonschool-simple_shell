@@ -38,7 +38,7 @@ int run_new_process(char **args)
 			return EXIT_FAILURE;
 		}
 		fprintf(stderr, "./%s: 1: %s: not found\n", executable_filename, command);
-		exit(127);
+		return 127;
 	}
 
 	child_pid = fork();
@@ -81,5 +81,5 @@ int run_new_process(char **args)
 
 	free(filepath);
 
-	return child_pid > 0 ? EXIT_SUCCESS : EXIT_FAILURE;
+	return status;
 }

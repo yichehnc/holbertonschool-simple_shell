@@ -14,7 +14,8 @@ void run_shell(int interactive)
 {
         char *line;
         char **args;
-        int status;
+        int status = 0;
+        int exit_loop = 0;
 
         do
         {
@@ -30,24 +31,21 @@ void run_shell(int interactive)
 
                 if (line == NULL)
                 {
-                        break;
+                        exit_loop = 1;
                 }
-
-                args = _split_line(line);
-                status = _execute_args(args);
-
-                if (status == EXIT_SUCCESS && strcmp(args[0], "exit") == 0)
+                else
                 {
+                        args = _split_line(line);
+                        status = _execute_args(args);
+
                         free(line);
                         free(args);
-                        exit(EXIT_SUCCESS);
                 }
-                /*else if (status == EXIT_FAILURE)
+
+                if (exit_loop)
                 {
-                        fprintf(stderr, "Command execution failed\n");
-                }*/
-                free(line);
-                free(args);
+                        exit(status);
+                }
         } while (1);
 }
 
