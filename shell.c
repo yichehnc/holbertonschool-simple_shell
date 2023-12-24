@@ -64,7 +64,7 @@ void run_shell(int interactive)
 	char *line = NULL, **args = NULL;
 	int status = 0, exit_loop = 0;
 
-	while (1)
+	while (exit_loop == 0)
 	{
 		if (interactive)
 		{
@@ -95,12 +95,9 @@ void run_shell(int interactive)
 		}
 
 		free(line);
-
-		if (exit_loop)
-		{
-			exit(status);
-		}
 	}
+
+	exit(status);
 }
 
 /**
