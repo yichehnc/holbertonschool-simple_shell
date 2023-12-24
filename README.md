@@ -101,31 +101,31 @@ This will open the simple shell with a prompt `$` and allow the user to input co
 ### Examples-of-commands
 ```
 $ /bin/ls
-AUTHORS             _read_stream.c          shell
-README.md           _simple_shell_launch.c  shell.c
-_execute_command.c  _split_string.c         shell.h
-_read_line.c        man_1_simple_shell      simple_shell_builtins.c
+AUTHORS    _execute_args.c  _read_stream.c  get_executable_name.c  man_1_simple_shell  shell    shell.h
+README.md  _read_line.c     _split_line.c   get_filepath.c         run_new_process.c   shell.c  simple_shell_builtins.c
 $ 
 ```
 Commands can then be entered after the `$` and run, if it is a known command, it will execute, otherwise, an error message will appear.
 ```
 $ ls -la
-total 80
-drwxr-xr-x 3 ycao ycao  4096 Dec 21 21:37 .
+total 88
+drwxr-xr-x 3 ycao ycao  4096 Dec 24 10:39 .
 drwxr-x--- 7 ycao ycao  4096 Dec 22 10:12 ..
-drwxr-xr-x 8 ycao ycao  4096 Dec 22 17:56 .git
+drwxr-xr-x 8 ycao ycao  4096 Dec 24 10:39 .git
 -rw-r--r-- 1 ycao ycao   236 Dec 18 20:47 AUTHORS
--rw-r--r-- 1 ycao ycao  4401 Dec 22 17:48 README.md
--rw-r--r-- 1 ycao ycao   618 Dec 20 09:52 _execute_command.c
--rw-r--r-- 1 ycao ycao   481 Dec 20 09:52 _read_line.c
--rw-r--r-- 1 ycao ycao   715 Dec 20 09:52 _read_stream.c
--rw-r--r-- 1 ycao ycao   586 Dec 20 09:52 _simple_shell_launch.c
--rw-r--r-- 1 ycao ycao  1532 Dec 20 09:52 _split_string.c
--rw-r--r-- 1 ycao ycao  1218 Dec 22 17:55 man_1_simple_shell
+-rw-r--r-- 1 ycao ycao  5363 Dec 23 10:32 README.md
+-rw-r--r-- 1 ycao ycao  1283 Dec 24 10:39 _execute_args.c
+-rw-r--r-- 1 ycao ycao   745 Dec 24 10:39 _read_line.c
+-rw-r--r-- 1 ycao ycao  1124 Dec 24 10:39 _read_stream.c
+-rw-r--r-- 1 ycao ycao   859 Dec 24 10:39 _split_line.c
+-rw-r--r-- 1 ycao ycao  1101 Dec 24 10:39 get_executable_name.c
+-rw-r--r-- 1 ycao ycao  1402 Dec 24 10:39 get_filepath.c
+-rw-r--r-- 1 ycao ycao  1218 Dec 23 10:32 man_1_simple_shell
+-rw-r--r-- 1 ycao ycao  3645 Dec 24 10:39 run_new_process.c
 -rwxr-xr-x 1 ycao ycao 17360 Dec 20 09:09 shell
--rw-r--r-- 1 ycao ycao  1013 Dec 20 10:05 shell.c
--rw-r--r-- 1 ycao ycao   622 Dec 20 09:52 shell.h
--rw-r--r-- 1 ycao ycao   803 Dec 20 09:52 simple_shell_builtins.c
+-rw-r--r-- 1 ycao ycao  2758 Dec 24 10:39 shell.c
+-rw-r--r-- 1 ycao ycao   813 Dec 24 10:39 shell.h
+-rw-r--r-- 1 ycao ycao  2481 Dec 24 10:39 simple_shell_builtins.c
 $ 
 ```
 
@@ -140,8 +140,8 @@ The simple shell does not need to be opened. Commands can be piped into the simp
 
 ```
 echo /bin/ls | ./shell
-AUTHORS    _execute_command.c  _read_stream.c          _split_string.c     shell    shell.h
-README.md  _read_line.c        _simple_shell_launch.c  man_1_simple_shell  shell.c  simple_shell_builtins.c
+AUTHORS    _execute_args.c  _read_stream.c  get_executable_name.c  man_1_simple_shell  shell    shell.h
+README.md  _read_line.c     _split_line.c   get_filepath.c         run_new_process.c   shell.c  simple_shell_builtins.c
 ```
 Once the process has been executed, there is no need to `exit` as the simple shell does not open in the non-interactive mode.
 
