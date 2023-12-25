@@ -30,7 +30,6 @@ extern char *builtin_func_list[];
 /* Functin declarations for builtin simple shell commands*/
 int shell_cd(char **args);
 int shell_help(char **args);
-int shell_exit(char **args);
 int shell_env(__attribute__((unused)) char **args);
 
 #endif

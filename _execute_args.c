@@ -25,12 +25,11 @@
  */
 int _execute_args(char **args)
 {
-	char *builtin_funcs_list[] = {"cd", "help", "exit", "env"};
+	char *builtin_funcs_list[] = {"cd", "help", "env"};
 
 	int (*builtin_funcs[])(char **) = {
 	    &shell_cd,
 	    &shell_help,
-	    &shell_exit,
 	    &shell_env};
 
 	unsigned int i;

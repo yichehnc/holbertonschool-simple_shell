@@ -62,29 +62,6 @@ int shell_help(__attribute__((unused)) char **args)
 }
 
 /**
- * shell_exit - Exit shell with specified exit status.
- * @args: Array of strings representing the command and its arguments.
- *
- * Description:
- * Exits shell with user-specified exit status or default 0.
- *
- * Parameters:
- * @args: Array of strings representing the command and its arguments.
- *
- * Return:
- * Specified exit status or 0 if no argument is provided.
- */
-int shell_exit(__attribute__((unused)) char **args)
-{
-	if (args[1])
-	{
-		return (atoi(args[1]));
-	}
-
-	return (0);
-}
-
-/**
  * shell_env - Print current environment variables.
  * @args: Array of strings representing the command and its arguments (unused).
  *
