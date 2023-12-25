@@ -153,6 +153,7 @@ Call the manual to read how the `simple shell` works:
 man ./man_1_simple_shell
 ```
 ### Flowchart
+[Miro board flowchart for the project](https://miro.com/app/board/uXjVN_SQFo4=/?share_link_id=173682512697)
 
 ## Authors
 To contact the authors of this page and to review the code or submit pull requests, please visit:
