@@ -9,13 +9,10 @@
  * execution and exits the process with the corresponding status. Handles
  * specific errors (EACCES, ENOENT, ENOMEM) and uses strerror for others.
  *
- * Parameters:
- * @error_num: Error number indicating the type of error.
- *
  * Return:
  * Exits the process with the appropriate status based on the error.
  */
-void handle_subprocess_error(errno)
+void handle_subprocess_error()
 {
 	switch (errno)
 	{
