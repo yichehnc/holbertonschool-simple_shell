@@ -25,25 +25,19 @@
  */
 int _execute_args(char **args)
 {
-	char *builtin_funcs_list[] = {"cd", "help", "env"};
 
-	int (*builtin_funcs[])(char **) = {
-	    &shell_cd,
-	    &shell_help,
-	    &shell_env};
+	BuiltinFunction builtin_funcs[] = {
+	    {"cd", &shell_cd},
+	    {"help", &shell_help},
+	    {"env", &shell_env}};
 
 	unsigned int i;
 
-	if (args[0] == NULL)
+	for (i = 0; i < sizeof(builtin_funcs) / sizeof(BuiltinFunction); i++)
 	{
-		return (-1);
-	}
-
-	for (i = 0; i < sizeof(builtin_funcs_list) / sizeof(char *); i++)
-	{
-		if (strcmp(args[0], builtin_funcs_list[i]) == 0)
+		if (strcmp(args[0], builtin_funcs[i].name) == 0)
 		{
-			return ((*builtin_funcs[i])(args));
+			return (builtin_funcs[i].func(args));
 		}
 	}
 

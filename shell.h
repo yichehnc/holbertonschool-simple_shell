@@ -25,7 +25,11 @@ int _execute_args(char **args);
 char *get_filepath(char *command);
 const char *get_filename(const char *path);
 
-extern char *builtin_func_list[];
+typedef struct
+{
+	const char *name;
+	int (*func)(char **);
+} BuiltinFunction;
 
 /* Functin declarations for builtin simple shell commands*/
 int shell_cd(char **args);
