@@ -15,9 +15,9 @@
  * Return:
  * Exits the process with the appropriate status based on the error.
  */
-void handle_subprocess_error(int error_num)
+void handle_subprocess_error()
 {
-	switch (error_num)
+	switch (errno)
 	{
 	case EACCES:
 		fprintf(stderr, "execve failed: Permission denied\n");
@@ -32,7 +32,7 @@ void handle_subprocess_error(int error_num)
 		exit(128);
 		break;
 	default:
-		fprintf(stderr, "execve failed: %s\n", strerror(error_num));
+		fprintf(stderr, "execve failed: %s\n", strerror(errno));
 		exit(EXIT_FAILURE);
 	}
 }
@@ -77,7 +77,8 @@ void handle_execution(char *filepath, char **args, char **environ, int *status)
 	}
 	else
 	{
-		do {
+		do
+		{
 			waitpid(child_pid, status, WUNTRACED);
 		} while (!WIFEXITED(*status) && !WIFSIGNALED(*status));
 	}
@@ -107,30 +108,29 @@ int run_new_process(char **args)
 
 	filepath = get_filepath(command);
 
-	if (strchr(command, '/') != NULL)
+	if (filepath == NULL)
 	{
-		if (stat(command, &st) == 0)
+		if (strchr(command, '/') != NULL && stat(command, &st) == 0)
 		{
 			filepath = strdup(command);
 		}
-	}
-
-	if (filepath == NULL)
-	{
-		len = readlink("/proc/self/exe", exec_path_abs, sizeof(exec_path_abs) - 1);
-
-		if (len != -1)
-		{
-			exec_path_abs[len] = '\0';
-			executable_filename = get_filename(exec_path_abs);
-		}
 		else
 		{
-			perror("Error getting executable path");
-			return (EXIT_FAILURE);
+			len = readlink("/proc/self/exe", exec_path_abs, sizeof(exec_path_abs) - 1);
+
+			if (len != -1)
+			{
+				exec_path_abs[len] = '\0';
+				executable_filename = get_filename(exec_path_abs);
+			}
+			else
+			{
+				perror("Error getting executable path");
+				return (EXIT_FAILURE);
+			}
+			fprintf(stderr, "./%s: 1: %s: not found\n", executable_filename, command);
+			return (127);
 		}
-		fprintf(stderr, "./%s: 1: %s: not found\n", executable_filename, command);
-		return (127);
 	}
 
 	handle_execution(filepath, args, environ, &status);
