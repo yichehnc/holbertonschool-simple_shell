@@ -15,7 +15,7 @@
  * Return:
  * Exits the process with the appropriate status based on the error.
  */
-void handle_subprocess_error()
+void handle_subprocess_error(void)
 {
 	switch (errno)
 	{
@@ -68,7 +68,7 @@ void handle_execution(char *filepath, char **args, char **environ, int *status)
 	{
 		if (execve(filepath, args, environ) == -1)
 		{
-			handle_subprocess_error(errno);
+			handle_subprocess_error();
 		}
 	}
 	else if (child_pid < 0)
@@ -77,8 +77,7 @@ void handle_execution(char *filepath, char **args, char **environ, int *status)
 	}
 	else
 	{
-		do
-		{
+		do {
 			waitpid(child_pid, status, WUNTRACED);
 		} while (!WIFEXITED(*status) && !WIFSIGNALED(*status));
 	}
